@@ -14,7 +14,7 @@
 #' For a more advanced download interface which supports concurrent requests and
 #' resuming large files, have a look at the [multi_download] function.
 #'
-#' @useDynLib curl R_download_curl
+#' 
 #' @seealso Advanced download interface: [multi_download]
 #' @param url A character string naming the URL of a resource to be downloaded.
 #' @param destfile A character string with the name where the downloaded file
@@ -39,7 +39,7 @@ curl_download <- function(url, destfile, quiet = TRUE, mode = "wb", handle = new
   nonblocking <- isTRUE(getOption("curl_interrupt", TRUE))
   tmp <- enc2native(paste0(destfile, ".curltmp"))
   on.exit(unlink(tmp))
-  .Call(R_download_curl, url, tmp, quiet, mode, handle, nonblocking)
+#
   file.rename(tmp, destfile)
   invisible(destfile)
 }

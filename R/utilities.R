@@ -5,14 +5,14 @@ curl_symbols <- function(filter = ""){
   curl_symbol_data[m,]
 }
 
-#' @useDynLib curl R_curl_version
+#' 
 #' @export
 #' @rdname curl_options
 #' @examples
 #' # Curl/ssl version info
 #' curl_version()
 curl_version <- function(){
-  .Call(R_curl_version);
+#
 }
 
 #' Parse date/time
@@ -23,7 +23,7 @@ curl_version <- function(){
 #' might be easier.
 #'
 #' @param datestring a string consisting of a timestamp
-#' @useDynLib curl R_curl_getdate
+#' 
 #' @export
 #' @examples
 #' # Parse dates in many formats
@@ -31,15 +31,15 @@ curl_version <- function(){
 #' parse_date("06 Nov 1994 08:49:37")
 #' parse_date("20040911 +0200")
 parse_date <- function(datestring){
-  out <- .Call(R_curl_getdate, datestring);
+#
   class(out) <- c("POSIXct", "POSIXt")
   out
 }
 
 
-#' @useDynLib curl R_split_string
+#' 
 split_string <- function(x, split = ":"){
-  .Call(R_split_string, x, split)
+#
 }
 
 trimws <- function(x) {

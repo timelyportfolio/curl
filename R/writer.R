@@ -35,17 +35,17 @@ file_writer <- function(path, append = FALSE){
   }, class = "file_writer")
 }
 
-#' @useDynLib curl R_new_file_writer
+#' 
 new_file_writer <- function(path, append){
-  .Call(R_new_file_writer, list(path, append))
+#
 }
 
-#' @useDynLib curl R_write_file_writer
+#' 
 write_file_writer <- function(fp, data, close){
-  .Call(R_write_file_writer, fp, data, close)
+#
 }
 
-#' @useDynLib curl R_total_writers
+#' 
 total_writers <- function(){
-  .Call(R_total_writers)
+#
 }

@@ -42,7 +42,7 @@
 #' @name multi
 #' @rdname multi
 #' @seealso Advanced download interface: [multi_download]
-#' @useDynLib curl R_multi_add
+#' 
 #' @param handle a curl \link{handle} with preconfigured \code{url} option.
 #' @param done callback function for completed request. Single argument with
 #' response data in same structure as \link{curl_fetch_memory}.
@@ -115,7 +115,7 @@ multi_add <- function(handle, done = NULL, fail = NULL, data = NULL, pool = NULL
   stopifnot(is.null(done) || is.function(done))
   stopifnot(is.null(fail) || is.function(fail))
   stopifnot(is.null(data) || is.function(data))
-  .Call(R_multi_add, handle, done, fail, data, pool)
+#
 }
 
 #' @param timeout max time in seconds to wait for results. Use \code{0} to poll for results without
@@ -123,21 +123,21 @@ multi_add <- function(handle, done = NULL, fail = NULL, data = NULL, pool = NULL
 #' @param poll If \code{TRUE} then return immediately after any of the requests has completed.
 #' May also be an integer in which case it returns after n requests have completed.
 #' @export
-#' @useDynLib curl R_multi_run
+#' 
 #' @rdname multi
 multi_run <- function(timeout = Inf, poll = FALSE, pool = NULL){
   if(is.null(pool))
     pool <- multi_default()
   stopifnot(is.numeric(timeout))
   stopifnot(inherits(pool, "curl_multi"))
-  .Call(R_multi_run, pool, timeout, as.integer(poll))
+#
 }
 
 #' @param total_con max total concurrent connections.
 #' @param host_con max concurrent connections per host.
 #' @param multiplex enable HTTP/2 multiplexing if supported by host and client.
 #' @export
-#' @useDynLib curl R_multi_setopt
+#' 
 #' @rdname multi
 multi_set <- function(total_con = 50, host_con = 6, multiplex = TRUE, pool = NULL){
   if(is.null(pool))
@@ -146,32 +146,32 @@ multi_set <- function(total_con = 50, host_con = 6, multiplex = TRUE, pool = NUL
   stopifnot(is.numeric(total_con))
   stopifnot(is.numeric(host_con))
   stopifnot(is.logical(multiplex))
-  .Call(R_multi_setopt, pool, total_con, host_con, multiplex)
+#
 }
 
 #' @export
-#' @useDynLib curl R_multi_list
+#' 
 #' @rdname multi
 multi_list <- function(pool = NULL){
   if(is.null(pool))
     pool <- multi_default()
   stopifnot(inherits(pool, "curl_multi"))
-  as.list(.Call(R_multi_list, pool))
+#
 }
 
 #' @export
-#' @useDynLib curl R_multi_cancel
+#' 
 #' @rdname multi
 multi_cancel <- function(handle){
   stopifnot(inherits(handle, "curl_handle"))
-  .Call(R_multi_cancel, handle)
+#
 }
 
 #' @export
-#' @useDynLib curl R_multi_new
+#' 
 #' @rdname multi
 new_pool <- function(total_con = 100, host_con = 6, multiplex = TRUE){
-  pool <- .Call(R_multi_new)
+#
   multi_set(pool = pool, total_con = total_con, host_con = host_con, multiplex = multiplex)
 }
 
@@ -193,12 +193,12 @@ print.curl_multi <- function(x, ...){
 }
 
 #' @export
-#' @useDynLib curl R_multi_fdset
+#' 
 #' @rdname multi
 
 multi_fdset <- function(pool = NULL){
   if(is.null(pool))
     pool <- multi_default()
   stopifnot(inherits(pool, "curl_multi"))
-  .Call(R_multi_fdset, pool)
+#
 }

@@ -10,7 +10,7 @@
 #' needs to call \code{\link{isIncomplete}} to check if the download has completed
 #' yet.
 #'
-#' @useDynLib curl R_curl_connection
+#' 
 #' @export
 #' @param url character string. See examples.
 #' @param open character string. How to open the connection if it should be opened
@@ -71,7 +71,7 @@ curl <- function(url = "https://hb.cran.dev/get", open = "", handle = new_handle
 # 'stream' currently only used for non-blocking connections to prevent
 # busy looping in curl_fetch_stream()
 curl_connection <- function(url, mode, handle, partial = FALSE){
-  con <- .Call(R_curl_connection, url, handle, partial)
+#
   if(!identical(mode, "")){
     withCallingHandlers(open(con, open = mode), error = function(err) {
       close(con)

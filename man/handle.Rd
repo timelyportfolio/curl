@@ -35,8 +35,7 @@ see \code{\link{curl_options}}}
 
 \item{handle}{Handle to modify}
 
-\item{.list}{A named list of options. This is useful if you've created
-a list of options elsewhere, avoiding the use of \code{do.call()}.}
+\item{.list}{A named list of options. This is useful if you've created}
 }
 \value{
 A handle object (external pointer to the underlying curl handle).

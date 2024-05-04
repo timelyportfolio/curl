@@ -9,15 +9,15 @@
 #' URL. If your settings have an "automatic configuration script" this
 #' involves downloading and executing a PAC file, which can take a while.
 #'
-#' @useDynLib curl R_proxy_info
+#' 
 #' @export
 #' @rdname ie_proxy
 #' @name ie_proxy
 ie_proxy_info <- function(){
-  .Call(R_proxy_info)
+#
 }
 
-#' @useDynLib curl R_get_proxy_for_url
+#' 
 #' @param target_url url with host for which to lookup the proxy server
 #' @export
 #' @rdname ie_proxy
@@ -33,7 +33,7 @@ ie_get_proxy_for_url <- function(target_url = "http://www.google.com"){
     }
   }
   if(isTRUE(info$AutoDetect) || length(info$AutoConfigUrl)){
-    out <- .Call(R_get_proxy_for_url, target_url, info$AutoDetect, info$AutoConfigUrl)
+#
     if(isTRUE(out$HasProxy)){
       return(out$Proxy)
     }
@@ -41,7 +41,7 @@ ie_get_proxy_for_url <- function(target_url = "http://www.google.com"){
   return(NULL);
 }
 
-#' @useDynLib curl R_windows_build
+#' 
 get_windows_build <- function(){
-  .Call(R_windows_build)
+#
 }

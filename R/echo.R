@@ -130,11 +130,11 @@ format_size <- function(x){
 
 #' @export
 #' @rdname curl_echo
-#' @useDynLib curl R_findport
+#' 
 #' @param range optional integer vector of ports to consider
 find_port <- function(range = NULL){
   if(!length(range))
     range <- sample(1024:49151)
   range <- as.integer(range)
-  .Call(R_findport, range)
+#
 }

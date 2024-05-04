@@ -25,7 +25,7 @@
 #'   so you can create a pipeline of operations.
 #' @export
 #' @name handle
-#' @useDynLib curl R_new_handle
+#' 
 #' @rdname handle
 #' @examples
 #' h <- new_handle()
@@ -41,16 +41,16 @@
 #' r <- curl_fetch_memory("https://hb.cran.dev/put", h)
 #' cat(rawToChar(r$content))
 new_handle <- function(...){
-  h <- .Call(R_new_handle)
+#
   handle_setopt(h, ...)
   h
 }
 
 #' @export
-#' @useDynLib curl R_handle_setopt
+#' 
 #' @param handle Handle to modify
 #' @param .list A named list of options. This is useful if you've created
-#'   a list of options elsewhere, avoiding the use of \code{do.call()}.
+#
 #' @rdname handle
 handle_setopt <- function(handle, ..., .list = list()){
   stopifnot(inherits(handle, "curl_handle"))
@@ -64,7 +64,7 @@ handle_setopt <- function(handle, ..., .list = list()){
       paste(bad_opts, collapse=", "))
   }
   stopifnot(length(keys) == length(values))
-  .Call(R_handle_setopt, handle, keys, values)
+#
   invisible(handle)
 }
 
@@ -86,22 +86,22 @@ format_request_headers <- function(x){
   paste0(names, postfix)
 }
 
-#' @useDynLib curl R_handle_getheaders
+#' 
 #' @rdname handle
 handle_getheaders <- function(handle){
   stopifnot(inherits(handle, "curl_handle"))
-  .Call(R_handle_getheaders, handle)
+#
 }
 
-#' @useDynLib curl R_handle_getcustom
+#' 
 #' @rdname handle
 handle_getcustom <- function(handle){
   stopifnot(inherits(handle, "curl_handle"))
-  .Call(R_handle_getcustom, handle)
+#
 }
 
 #' @export
-#' @useDynLib curl R_handle_setform
+#' 
 #' @rdname handle
 handle_setform <- function(handle, ..., .list = list()){
   stopifnot(inherits(handle, "curl_handle"))
@@ -114,16 +114,16 @@ handle_setform <- function(handle, ..., .list = list()){
       stop("Unsupported value type for form field '", names(form[i]), "'.")
     }
   }
-  .Call(R_handle_setform, handle, form)
+#
   invisible(handle)
 }
 
 #' @export
 #' @rdname handle
-#' @useDynLib curl R_handle_reset
+#' 
 handle_reset <- function(handle){
   stopifnot(inherits(handle, "curl_handle"))
-  .Call(R_handle_reset, handle)
+#
   invisible(handle)
 }
 
@@ -132,7 +132,7 @@ handle_reset <- function(handle){
 #' The \code{handle_cookies} function returns a data frame with 7 columns as specified in the
 #' \href{http://www.cookiecentral.com/faq/#3.5}{netscape cookie file format}.
 #'
-#' @useDynLib curl R_get_handle_cookies
+#' 
 #' @export
 #' @param handle a curl handle object
 #' @family handles
@@ -153,10 +153,10 @@ handle_reset <- function(handle){
 #' handle_cookies(h)
 handle_cookies <- function(handle){
   stopifnot(inherits(handle, "curl_handle"))
-  cookies <- .Call(R_get_handle_cookies, handle)
+#
   df <- if(length(cookies)){
     values <- lapply(strsplit(cookies, split="\t"), `[`, 1:7)
-    as.data.frame(do.call(rbind, values), stringsAsFactors = FALSE)
+#
   } else {
     as.data.frame(matrix(ncol=7, nrow=0))
   }
@@ -173,34 +173,34 @@ handle_cookies <- function(handle){
 
 #' @export
 #' @rdname handle
-#' @useDynLib curl R_get_handle_response
+#' 
 handle_data <- function(handle){
   stopifnot(inherits(handle, "curl_handle"))
-  out <- .Call(R_get_handle_response, handle)
+#
   out$content = NULL
   out
 }
 
 # This is for internal use in progress bars. When the download is complete,
 # the speed is equal to content-size / elapsed-time.
-#' @useDynLib curl R_get_handle_speed
+#' 
 handle_speed <- function(handle){
-  .Call(R_get_handle_speed, handle)
+#
 }
 
-#' @useDynLib curl R_get_handle_clength
+#' 
 handle_clength <- function(handle){
-  .Call(R_get_handle_clength, handle)
+#
 }
 
-#' @useDynLib curl R_get_handle_received
+#' 
 handle_received <- function(handle){
-  .Call(R_get_handle_received, handle)
+#
 }
 
-#' @useDynLib curl R_get_handle_mtime
+#' 
 handle_mtime <- function(handle){
-  .Call(R_get_handle_mtime, handle)
+#
 }
 
 #' @export
@@ -212,9 +212,9 @@ print.curl_handle <- function(x, ...){
 }
 
 # Only for testing memory leaks
-#' @useDynLib curl R_total_handles
+#' 
 total_handles <- function(){
-  .Call(R_total_handles)
+#
 }
 
 ## Some hacks for backward compatibilty

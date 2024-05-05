@@ -29,6 +29,7 @@
 #' @rdname handle
 new_handle <- function(...){
 #
+  h <- NULL
   handle_setopt(h, ...)
   h
 }
@@ -40,6 +41,7 @@ new_handle <- function(...){
 #
 #' @rdname handle
 handle_setopt <- function(handle, ..., .list = list()){
+  if(is.null(h)) return(NULL)
   stopifnot(inherits(handle, "curl_handle"))
   values <- c(list(...), .list)
   opt_names <- fix_options(tolower(names(values)))

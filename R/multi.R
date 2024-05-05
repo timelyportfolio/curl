@@ -42,7 +42,7 @@
 #' @name multi
 #' @rdname multi
 #' @seealso Advanced download interface: [multi_download]
-#' 
+#'
 #' @param handle a curl \link{handle} with preconfigured \code{url} option.
 #' @param done callback function for completed request. Single argument with
 #' response data in same structure as \link{curl_fetch_memory}.
@@ -56,34 +56,6 @@
 #' the \code{done} callback (which is usually what you want).
 #' @param pool a multi handle created by \link{new_pool}. Default uses a global pool.
 #' @export
-#' @examples
-#' results <- list()
-#' success <- function(x){
-#'   results <<- append(results, list(x))
-#' }
-#' failure <- function(str){
-#'   cat(paste("Failed request:", str), file = stderr())
-#' }
-#' # This handle will take longest (3sec)
-#' h1 <- new_handle(url = "https://hb.cran.dev/delay/3")
-#' multi_add(h1, done = success, fail = failure)
-#'
-#' # This handle writes data to a file
-#' con <- file("output.txt")
-#' h2 <- new_handle(url = "https://hb.cran.dev/post", postfields = "bla bla")
-#' multi_add(h2, done = success, fail = failure, data = con)
-#'
-#' # This handle raises an error
-#' h3 <- new_handle(url = "https://urldoesnotexist.xyz")
-#' multi_add(h3, done = success, fail = failure)
-#'
-#' # Actually perform the requests
-#' multi_run(timeout = 2)
-#' multi_run()
-#'
-#' # Check the file
-#' readLines("output.txt")
-#' unlink("output.txt")
 multi_add <- function(handle, done = NULL, fail = NULL, data = NULL, pool = NULL){
   if(is.null(pool))
     pool <- multi_default()
@@ -123,7 +95,7 @@ multi_add <- function(handle, done = NULL, fail = NULL, data = NULL, pool = NULL
 #' @param poll If \code{TRUE} then return immediately after any of the requests has completed.
 #' May also be an integer in which case it returns after n requests have completed.
 #' @export
-#' 
+#'
 #' @rdname multi
 multi_run <- function(timeout = Inf, poll = FALSE, pool = NULL){
   if(is.null(pool))
@@ -137,7 +109,7 @@ multi_run <- function(timeout = Inf, poll = FALSE, pool = NULL){
 #' @param host_con max concurrent connections per host.
 #' @param multiplex enable HTTP/2 multiplexing if supported by host and client.
 #' @export
-#' 
+#'
 #' @rdname multi
 multi_set <- function(total_con = 50, host_con = 6, multiplex = TRUE, pool = NULL){
   if(is.null(pool))
@@ -150,7 +122,7 @@ multi_set <- function(total_con = 50, host_con = 6, multiplex = TRUE, pool = NUL
 }
 
 #' @export
-#' 
+#'
 #' @rdname multi
 multi_list <- function(pool = NULL){
   if(is.null(pool))
@@ -160,7 +132,7 @@ multi_list <- function(pool = NULL){
 }
 
 #' @export
-#' 
+#'
 #' @rdname multi
 multi_cancel <- function(handle){
   stopifnot(inherits(handle, "curl_handle"))
@@ -168,7 +140,7 @@ multi_cancel <- function(handle){
 }
 
 #' @export
-#' 
+#'
 #' @rdname multi
 new_pool <- function(total_con = 100, host_con = 6, multiplex = TRUE){
 #
@@ -193,7 +165,7 @@ print.curl_multi <- function(x, ...){
 }
 
 #' @export
-#' 
+#'
 #' @rdname multi
 
 multi_fdset <- function(pool = NULL){

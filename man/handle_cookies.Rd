@@ -13,22 +13,6 @@ handle_cookies(handle)
 The \code{handle_cookies} function returns a data frame with 7 columns as specified in the
 \href{http://www.cookiecentral.com/faq/#3.5}{netscape cookie file format}.
 }
-\examples{
-h <- new_handle()
-handle_cookies(h)
-
-# Server sets cookies
-req <- curl_fetch_memory("https://hb.cran.dev/cookies/set?foo=123&bar=ftw", handle = h)
-handle_cookies(h)
-
-# Server deletes cookies
-req <- curl_fetch_memory("https://hb.cran.dev/cookies/delete?foo", handle = h)
-handle_cookies(h)
-
-# Cookies will survive a reset!
-handle_reset(h)
-handle_cookies(h)
-}
 \seealso{
 Other handles: 
 \code{\link{handle}}

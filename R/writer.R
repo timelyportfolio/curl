@@ -12,20 +12,6 @@
 #' @param path file name or path on disk
 #' @param append open file in append mode
 #' @return Function with signature \code{writer(data = raw(), close = FALSE)}
-#' @examples
-#' # Doesn't open yet
-#' tmp <- tempfile()
-#' writer <- file_writer(tmp)
-#'
-#' # Now it opens
-#' writer(charToRaw("Hello!\n"))
-#' writer(charToRaw("How are you?\n"))
-#'
-#' # Close it!
-#' writer(charToRaw("All done!\n"), close = TRUE)
-#'
-#' # Check it worked
-#' readLines(tmp)
 file_writer <- function(path, append = FALSE){
   path <- enc2native(normalizePath(path, mustWork = FALSE))
   fp <- new_file_writer(path, append)
@@ -35,17 +21,17 @@ file_writer <- function(path, append = FALSE){
   }, class = "file_writer")
 }
 
-#' 
+#'
 new_file_writer <- function(path, append){
 #
 }
 
-#' 
+#'
 write_file_writer <- function(fp, data, close){
 #
 }
 
-#' 
+#'
 total_writers <- function(){
 #
 }

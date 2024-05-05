@@ -60,20 +60,6 @@ active connections, cookies or response data from previous requests. The safest
 way to perform multiple independent requests is by using a separate handle for
 each request. There is very little performance overhead in creating handles.
 }
-\examples{
-h <- new_handle()
-handle_setopt(h, customrequest = "PUT")
-handle_setform(h, a = "1", b = "2")
-r <- curl_fetch_memory("https://hb.cran.dev/put", h)
-cat(rawToChar(r$content))
-
-# Or use the list form
-h <- new_handle()
-handle_setopt(h, .list = list(customrequest = "PUT"))
-handle_setform(h, .list = list(a = "1", b = "2"))
-r <- curl_fetch_memory("https://hb.cran.dev/put", h)
-cat(rawToChar(r$content))
-}
 \seealso{
 Other handles: 
 \code{\link{handle_cookies}()}

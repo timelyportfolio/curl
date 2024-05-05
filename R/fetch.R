@@ -27,39 +27,6 @@
 #' @param handle a curl handle object
 #' @export
 #' @rdname curl_fetch
-#' 
-#' @examples
-#' \donttest{
-#' # Load in memory
-#' res <- curl_fetch_memory("https://hb.cran.dev/cookies/set?foo=123&bar=ftw")
-#' res$content
-#'
-#' # Save to disk
-#' res <- curl_fetch_disk("https://hb.cran.dev/stream/10", tempfile())
-#' res$content
-#' readLines(res$content)
-#'
-#' # Stream with callback
-#' drip_url <- "https://hb.cran.dev/drip?duration=3&numbytes=15&code=200"
-#' res <- curl_fetch_stream(drip_url, function(x){
-#'   cat(rawToChar(x))
-#' })
-#'
-#' # Async API
-#' data <- list()
-#' success <- function(res){
-#'   cat("Request done! Status:", res$status, "\n")
-#'   data <<- c(data, list(res))
-#' }
-#' failure <- function(msg){
-#'   cat("Oh noes! Request failed!", msg, "\n")
-#' }
-#' curl_fetch_multi("https://hb.cran.dev/get", success, failure)
-#' curl_fetch_multi("https://hb.cran.dev/status/418", success, failure)
-#' curl_fetch_multi("https://urldoesnotexist.xyz", success, failure)
-#' multi_run()
-#' str(data)
-#' }
 curl_fetch_memory <- function(url, handle = new_handle()){
   nonblocking <- isTRUE(getOption("curl_interrupt", TRUE))
 #
@@ -71,7 +38,7 @@ curl_fetch_memory <- function(url, handle = new_handle()){
 #' @export
 #' @param path Path to save results
 #' @rdname curl_fetch
-#' 
+#'
 curl_fetch_disk <- function(url, path, handle = new_handle()){
   nonblocking <- isTRUE(getOption("curl_interrupt", TRUE))
   path <- enc2native(normalizePath(path, mustWork = FALSE))
@@ -85,7 +52,7 @@ curl_fetch_disk <- function(url, path, handle = new_handle()){
 #' @param fun Callback function. Should have one argument, which will be
 #'   a raw vector.
 #' @rdname curl_fetch
-#' 
+#'
 curl_fetch_stream <- function(url, fun, handle = new_handle()){
   # Blocking = TRUE and partial = TRUE to prevent busy-waiting
   con <- curl_connection(url, mode = "", handle = handle, partial = TRUE)
@@ -104,7 +71,7 @@ curl_fetch_stream <- function(url, fun, handle = new_handle()){
 #' @export
 #' @rdname curl_fetch
 #' @inheritParams multi
-#' 
+#'
 curl_fetch_multi <- function(url, done = NULL, fail = NULL, pool = NULL,
                              data = NULL, handle = new_handle()){
   handle_setopt(handle, url = enc2utf8(url))

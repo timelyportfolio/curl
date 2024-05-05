@@ -4,7 +4,7 @@
 \alias{curl}
 \title{Curl connection interface}
 \usage{
-curl(url = "https://hb.cran.dev/get", open = "", handle = new_handle())
+curl(url = "https://hb.cran.dev/get", open = "", handle)
 }
 \arguments{
 \item{url}{character string. See examples.}

@@ -40,14 +40,6 @@ the error page to disk in case of a non success response.
 For a more advanced download interface which supports concurrent requests and
 resuming large files, have a look at the \link{multi_download} function.
 }
-\examples{
-# Download large file
-\dontrun{
-url <- "http://www2.census.gov/acs2011_5yr/pums/csv_pus.zip"
-tmp <- tempfile()
-curl_download(url, tmp)
-}
-}
 \seealso{
 Advanced download interface: \link{multi_download}
 }

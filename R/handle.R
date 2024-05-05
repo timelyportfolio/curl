@@ -25,21 +25,8 @@
 #'   so you can create a pipeline of operations.
 #' @export
 #' @name handle
-#' 
-#' @rdname handle
-#' @examples
-#' h <- new_handle()
-#' handle_setopt(h, customrequest = "PUT")
-#' handle_setform(h, a = "1", b = "2")
-#' r <- curl_fetch_memory("https://hb.cran.dev/put", h)
-#' cat(rawToChar(r$content))
 #'
-#' # Or use the list form
-#' h <- new_handle()
-#' handle_setopt(h, .list = list(customrequest = "PUT"))
-#' handle_setform(h, .list = list(a = "1", b = "2"))
-#' r <- curl_fetch_memory("https://hb.cran.dev/put", h)
-#' cat(rawToChar(r$content))
+#' @rdname handle
 new_handle <- function(...){
 #
   handle_setopt(h, ...)
@@ -47,7 +34,7 @@ new_handle <- function(...){
 }
 
 #' @export
-#' 
+#'
 #' @param handle Handle to modify
 #' @param .list A named list of options. This is useful if you've created
 #
@@ -86,14 +73,14 @@ format_request_headers <- function(x){
   paste0(names, postfix)
 }
 
-#' 
+#'
 #' @rdname handle
 handle_getheaders <- function(handle){
   stopifnot(inherits(handle, "curl_handle"))
 #
 }
 
-#' 
+#'
 #' @rdname handle
 handle_getcustom <- function(handle){
   stopifnot(inherits(handle, "curl_handle"))
@@ -101,7 +88,7 @@ handle_getcustom <- function(handle){
 }
 
 #' @export
-#' 
+#'
 #' @rdname handle
 handle_setform <- function(handle, ..., .list = list()){
   stopifnot(inherits(handle, "curl_handle"))
@@ -120,7 +107,7 @@ handle_setform <- function(handle, ..., .list = list()){
 
 #' @export
 #' @rdname handle
-#' 
+#'
 handle_reset <- function(handle){
   stopifnot(inherits(handle, "curl_handle"))
 #
@@ -132,25 +119,10 @@ handle_reset <- function(handle){
 #' The \code{handle_cookies} function returns a data frame with 7 columns as specified in the
 #' \href{http://www.cookiecentral.com/faq/#3.5}{netscape cookie file format}.
 #'
-#' 
+#'
 #' @export
 #' @param handle a curl handle object
 #' @family handles
-#' @examples
-#' h <- new_handle()
-#' handle_cookies(h)
-#'
-#' # Server sets cookies
-#' req <- curl_fetch_memory("https://hb.cran.dev/cookies/set?foo=123&bar=ftw", handle = h)
-#' handle_cookies(h)
-#'
-#' # Server deletes cookies
-#' req <- curl_fetch_memory("https://hb.cran.dev/cookies/delete?foo", handle = h)
-#' handle_cookies(h)
-#'
-#' # Cookies will survive a reset!
-#' handle_reset(h)
-#' handle_cookies(h)
 handle_cookies <- function(handle){
   stopifnot(inherits(handle, "curl_handle"))
 #
@@ -173,7 +145,7 @@ handle_cookies <- function(handle){
 
 #' @export
 #' @rdname handle
-#' 
+#'
 handle_data <- function(handle){
   stopifnot(inherits(handle, "curl_handle"))
 #
@@ -183,22 +155,22 @@ handle_data <- function(handle){
 
 # This is for internal use in progress bars. When the download is complete,
 # the speed is equal to content-size / elapsed-time.
-#' 
+#'
 handle_speed <- function(handle){
 #
 }
 
-#' 
+#'
 handle_clength <- function(handle){
 #
 }
 
-#' 
+#'
 handle_received <- function(handle){
 #
 }
 
-#' 
+#'
 handle_mtime <- function(handle){
 #
 }
@@ -212,7 +184,7 @@ print.curl_handle <- function(x, ...){
 }
 
 # Only for testing memory leaks
-#' 
+#'
 total_handles <- function(){
 #
 }

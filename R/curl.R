@@ -17,7 +17,7 @@
 #'   initially. Currently only "r" and "rb" are supported.
 #' @param handle a curl handle object
 
-curl <- function(url = "https://hb.cran.dev/get", open = "", handle = new_handle()){
+curl <- function(url = "https://hb.cran.dev/get", open = "", handle){
   curl_connection(url, open, handle)
 }
 

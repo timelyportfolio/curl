@@ -14,7 +14,7 @@
 #' For a more advanced download interface which supports concurrent requests and
 #' resuming large files, have a look at the [multi_download] function.
 #'
-#' 
+#'
 #' @seealso Advanced download interface: [multi_download]
 #' @param url A character string naming the URL of a resource to be downloaded.
 #' @param destfile A character string with the name where the downloaded file
@@ -27,13 +27,6 @@
 #' @param handle a curl handle object
 #' @return Path of downloaded file (invisibly).
 #' @export
-#' @examples
-#' # Download large file
-#' \dontrun{
-#' url <- "http://www2.census.gov/acs2011_5yr/pums/csv_pus.zip"
-#' tmp <- tempfile()
-#' curl_download(url, tmp)
-#' }
 curl_download <- function(url, destfile, quiet = TRUE, mode = "wb", handle = new_handle()){
   destfile <- enc2native(normalizePath(destfile, mustWork = FALSE))
   nonblocking <- isTRUE(getOption("curl_interrupt", TRUE))

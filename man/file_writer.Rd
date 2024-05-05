@@ -24,18 +24,3 @@ for the \code{data} callback in \code{multi_add()} or \code{curl_fetch_multi()} 
 that we only keep open file handles for active downloads. This prevents running out
 of file descriptors when performing thousands of concurrent requests.
 }
-\examples{
-# Doesn't open yet
-tmp <- tempfile()
-writer <- file_writer(tmp)
-
-# Now it opens
-writer(charToRaw("Hello!\n"))
-writer(charToRaw("How are you?\n"))
-
-# Close it!
-writer(charToRaw("All done!\n"), close = TRUE)
-
-# Check it worked
-readLines(tmp)
-}

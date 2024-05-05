@@ -96,35 +96,3 @@ can use either \code{SecureTransport} or \code{LibreSSL}, the default varies by 
 version.
 }
 }
-\examples{
-\dontrun{
-# Example: some large files
-urls <- sprintf(
-  "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-\%02d.parquet", 1:12)
-res <- multi_download(urls, resume = TRUE) # You can interrupt (ESC) and resume
-
-# Example: revdep checker
-# Download all reverse dependencies for the 'curl' package from CRAN:
-pkg <- 'curl'
-mirror <- 'https://cloud.r-project.org'
-db <- available.packages(repos = mirror)
-packages <- c(pkg, tools::package_dependencies(pkg, db = db, reverse = TRUE)[[pkg]])
-versions <- db[packages,'Version']
-urls <- sprintf("\%s/src/contrib/\%s_\%s.tar.gz", mirror, packages,  versions)
-res <- multi_download(urls)
-all.equal(unname(tools::md5sum(res$destfile)), unname(db[packages, 'MD5sum']))
-# And then you could use e.g.: tools:::check_packages_in_dir()
-
-# Example: URL checker
-pkg_url_checker <- function(dir){
-  db <- tools:::url_db_from_package_sources(dir)
-  res <- multi_download(db$URL, rep('/dev/null', nrow(db)), nobody=TRUE)
-  db$OK <- res$status_code == 200
-  db
-}
-
-# Use a local package source directory
-pkg_url_checker(".")
-
-}
-}

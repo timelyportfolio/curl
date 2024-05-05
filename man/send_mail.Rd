@@ -86,21 +86,3 @@ should be upgraded with STARTTLS. The default value \code{"try"} will
 supports it, and proceed as normal otherwise.
 }
 
-\examples{
-\dontrun{# Set sender and recipients (email addresses only)
-recipients <- readline("Enter your email address to receive test: ")
-sender <- 'test@noreply.com'
-
-# Full email message in RFC2822 format
-message <- 'From: "R (curl package)" <test@noreply.com>
-To: "Roger Recipient" <roger@noreply.com>
-Subject: Hello R user!
-
-Dear R user,
-
-I am sending this email using curl.'
-
-# Send the email
-send_mail(sender, recipients, message, smtp_server = 'smtps://smtp.gmail.com',
-  username = 'curlpackage', password  = 'qyyjddvphjsrbnlm')}
-}

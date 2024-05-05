@@ -8,14 +8,6 @@
 #'
 #' @export
 #' @param filter string: only return options with string in name
-#' @examples # Available options
-#' curl_options()
-#'
-#' # List proxy options
-#' curl_options("proxy")
-#'
-#' # Symbol table
-#' curl_symbols("proxy")
 curl_options <- function(filter = ""){
   opts <- curl_options_list()
   m <- grep(filter, names(opts), ignore.case = TRUE)

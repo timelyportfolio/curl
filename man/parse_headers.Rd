@@ -26,11 +26,3 @@ If a request has followed redirects, the data can contain multiple sets of heade
 When multiple = TRUE, the function returns a list with the response headers
 for each request. By default it only returns the headers of the final request.
 }
-\examples{
-req <- curl_fetch_memory("https://hb.cran.dev/redirect/3")
-parse_headers(req$headers)
-parse_headers(req$headers, multiple = TRUE)
-
-# Parse into named list
-parse_headers_list(req$headers)
-}

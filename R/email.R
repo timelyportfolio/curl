@@ -60,22 +60,7 @@
 #' @param ... other options passed to \code{\link{handle_setopt}}. In most cases
 #' you will need to set a \code{username} and \code{password} or \code{login_options}
 #' to authenticate with the SMTP server, see details.
-#' @examples \dontrun{# Set sender and recipients (email addresses only)
-#' recipients <- readline("Enter your email address to receive test: ")
-#' sender <- 'test@noreply.com'
-#'
-#' # Full email message in RFC2822 format
-#' message <- 'From: "R (curl package)" <test@noreply.com>
-#' To: "Roger Recipient" <roger@noreply.com>
-#' Subject: Hello R user!
-#'
-#' Dear R user,
-#'
-#' I am sending this email using curl.'
-#'
-#' # Send the email
-#' send_mail(sender, recipients, message, smtp_server = 'smtps://smtp.gmail.com',
-#'   username = 'curlpackage', password  = 'qyyjddvphjsrbnlm')}
+
 send_mail <- function(mail_from, mail_rcpt, message, smtp_server = 'smtp://localhost',
                       use_ssl = c("try", "no", "force"), verbose = TRUE, ...){
   if(!grepl('://', smtp_server)) {

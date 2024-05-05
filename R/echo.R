@@ -9,20 +9,7 @@
 #' @param port the port number on which to run httpuv server
 #' @param progress show progress meter during http transfer
 #' @param file path or connection to write body. Default returns body as raw vector.
-#' @examples if(require('httpuv')){
-#' h <- new_handle(url = 'https://hb.cran.dev/post')
-#' handle_setform(h, foo = "blabla", bar = charToRaw("test"),
-#'   myfile = form_file(system.file("DESCRIPTION"), "text/description"))
-#'
-#' # Echo the POST request data
-#' formdata <- curl_echo(h)
-#'
-#' # Show the multipart body
-#' cat(rawToChar(formdata$body))
-#'
-#' # Parse multipart
-#' webutils::parse_http(formdata$body, formdata$content_type)
-#' }
+
 curl_echo <- function(handle, port = find_port(), progress = interactive(), file = NULL){
   progress <- isTRUE(progress)
   if(!(is.null(file) || inherits(file, "connection") || is.character(file)))
@@ -130,7 +117,7 @@ format_size <- function(x){
 
 #' @export
 #' @rdname curl_echo
-#' 
+#'
 #' @param range optional integer vector of ports to consider
 find_port <- function(range = NULL){
   if(!length(range))

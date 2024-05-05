@@ -23,14 +23,6 @@ symbols (including options) provides more information about the symbols,
 including when support was added/removed from libcurl.
 }
 \examples{
-# Available options
-curl_options()
-
-# List proxy options
-curl_options("proxy")
-
-# Symbol table
-curl_symbols("proxy")
 # Curl/ssl version info
 curl_version()
 }

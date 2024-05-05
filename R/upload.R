@@ -11,9 +11,6 @@
 #' @param reuse try to keep alive and recycle connections when possible
 #' @param ... other arguments passed to \code{\link{handle_setopt}}, for
 #' example a \code{username} and \code{password}.
-#' @examples \dontrun{# Upload package to winbuilder:
-#' curl_upload('mypkg_1.3.tar.gz', 'ftp://win-builder.r-project.org/R-devel/')
-#' }
 curl_upload <- function(file, url, verbose = TRUE, reuse = TRUE, ...) {
   infilesize <- NA
   con <- if(is.character(file)){

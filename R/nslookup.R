@@ -13,26 +13,6 @@
 #' @param error raise an error for failed DNS lookup. Otherwise returns \code{NULL}.
 #' @param ipv4_only always return ipv4 address. Set to `FALSE` to allow for ipv6 as well.
 #' @param multiple returns multiple ip addresses if possible
-#' @rdname nslookup
-#' 
-#' @examples # Should always work if we are online
-#' nslookup("www.r-project.org")
-#'
-#' # If your OS supports IPv6
-#' nslookup("ipv6.test-ipv6.com", ipv4_only = FALSE, error = FALSE)
-nslookup <- function(host, ipv4_only = FALSE, multiple = FALSE, error = TRUE){
-  stopifnot(is.character(host))
-  host <- enc2utf8(host)
-  if(grepl("://", host, fixed = TRUE))
-    stop("This looks like a URL, not a hostname")
-#
-  if(isTRUE(error) && is.null(out))
-    stop("Unable to resolve host: ", host)
-  if(isTRUE(multiple))
-    return(unique(out))
-  utils::head(out, 1)
-}
-
 #' @export
 #' @rdname nslookup
 has_internet <- local({

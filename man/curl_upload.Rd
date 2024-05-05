@@ -23,8 +23,3 @@ Upload a file to an \code{http://}, \code{ftp://}, or \code{sftp://} (ssh)
 server. Uploading to HTTP means performing an \code{HTTP PUT} on that URL.
 Be aware that sftp is only available for libcurl clients built with libssh2.
 }
-\examples{
-\dontrun{# Upload package to winbuilder:
-curl_upload('mypkg_1.3.tar.gz', 'ftp://win-builder.r-project.org/R-devel/')
-}
-}

@@ -29,8 +29,8 @@
 #' @rdname handle
 new_handle <- function(...){
 #
-  # handle_setopt(h, ...)
-  # h
+  handle_setopt(h, ...)
+  h
 }
 
 #' @export

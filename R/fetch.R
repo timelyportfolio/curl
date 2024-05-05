@@ -27,7 +27,7 @@
 #' @param handle a curl handle object
 #' @export
 #' @rdname curl_fetch
-curl_fetch_memory <- function(url, handle = new_handle()){
+curl_fetch_memory <- function(url, handle){
   nonblocking <- isTRUE(getOption("curl_interrupt", TRUE))
 #
   res <- handle_data(handle)
@@ -39,7 +39,7 @@ curl_fetch_memory <- function(url, handle = new_handle()){
 #' @param path Path to save results
 #' @rdname curl_fetch
 #'
-curl_fetch_disk <- function(url, path, handle = new_handle()){
+curl_fetch_disk <- function(url, path, handle){
   nonblocking <- isTRUE(getOption("curl_interrupt", TRUE))
   path <- enc2native(normalizePath(path, mustWork = FALSE))
 #
@@ -53,7 +53,7 @@ curl_fetch_disk <- function(url, path, handle = new_handle()){
 #'   a raw vector.
 #' @rdname curl_fetch
 #'
-curl_fetch_stream <- function(url, fun, handle = new_handle()){
+curl_fetch_stream <- function(url, fun, handle){
   # Blocking = TRUE and partial = TRUE to prevent busy-waiting
   con <- curl_connection(url, mode = "", handle = handle, partial = TRUE)
 
@@ -73,7 +73,7 @@ curl_fetch_stream <- function(url, fun, handle = new_handle()){
 #' @inheritParams multi
 #'
 curl_fetch_multi <- function(url, done = NULL, fail = NULL, pool = NULL,
-                             data = NULL, handle = new_handle()){
+                             data = NULL, handle){
   handle_setopt(handle, url = enc2utf8(url))
   multi_add(handle = handle, done = done, fail = fail, data = data, pool = pool)
   invisible(handle)
@@ -81,7 +81,7 @@ curl_fetch_multi <- function(url, done = NULL, fail = NULL, pool = NULL,
 
 #' @export
 #' @rdname curl_fetch
-curl_fetch_echo <- function(url, handle = new_handle()){
+curl_fetch_echo <- function(url, handle){
   handle_setopt(handle, url = enc2utf8(url))
   curl_echo(handle)
 }

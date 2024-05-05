@@ -7,12 +7,6 @@
 #' The \code{has_internet} function tests for internet connectivity by performing a
 #' dns lookup. If a proxy server is detected, it will also check for connectivity by
 #' connecting via the proxy.
-#'
-#' @export
-#' @param host a string with a hostname
-#' @param error raise an error for failed DNS lookup. Otherwise returns \code{NULL}.
-#' @param ipv4_only always return ipv4 address. Set to `FALSE` to allow for ipv6 as well.
-#' @param multiple returns multiple ip addresses if possible
 #' @export
 #' @rdname nslookup
 has_internet <- local({

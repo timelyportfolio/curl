@@ -6,15 +6,6 @@
 \usage{
 has_internet()
 }
-\arguments{
-\item{host}{a string with a hostname}
-
-\item{error}{raise an error for failed DNS lookup. Otherwise returns \code{NULL}.}
-
-\item{ipv4_only}{always return ipv4 address. Set to \code{FALSE} to allow for ipv6 as well.}
-
-\item{multiple}{returns multiple ip addresses if possible}
-}
 \description{
 The \code{nslookup} function is similar to \code{nsl} but works on all platforms
 and can resolve ipv6 addresses if supported by the OS. Default behavior raises an

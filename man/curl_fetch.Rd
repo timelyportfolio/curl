@@ -8,11 +8,11 @@
 \alias{curl_fetch_echo}
 \title{Fetch the contents of a URL}
 \usage{
-curl_fetch_memory(url, handle = new_handle())
+curl_fetch_memory(url, handle)
 
-curl_fetch_disk(url, path, handle = new_handle())
+curl_fetch_disk(url, path, handle)
 
-curl_fetch_stream(url, fun, handle = new_handle())
+curl_fetch_stream(url, fun, handle)
 
 curl_fetch_multi(
   url,
@@ -20,10 +20,10 @@ curl_fetch_multi(
   fail = NULL,
   pool = NULL,
   data = NULL,
-  handle = new_handle()
+  handle
 )
 
-curl_fetch_echo(url, handle = new_handle())
+curl_fetch_echo(url, handle)
 }
 \arguments{
 \item{url}{A character string naming the URL of a resource to be downloaded.}

@@ -27,7 +27,7 @@
 #' @param handle a curl handle object
 #' @return Path of downloaded file (invisibly).
 #' @export
-curl_download <- function(url, destfile, quiet = TRUE, mode = "wb", handle = new_handle()){
+curl_download <- function(url, destfile, quiet = TRUE, mode = "wb", handle){
   destfile <- enc2native(normalizePath(destfile, mustWork = FALSE))
   nonblocking <- isTRUE(getOption("curl_interrupt", TRUE))
   tmp <- enc2native(paste0(destfile, ".curltmp"))
